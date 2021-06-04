@@ -17,6 +17,8 @@ export tinyproxy_proxy_authorization="${tinyproxy_proxy_authorization}"
 %{ endif ~}
 %{ if internal_http_proxy != "" ~}
 export internal_http_proxy="${internal_http_proxy}"
+export http_proxy="${internal_http_proxy}"
+export https_proxy="${internal_http_proxy}"
 %{ endif ~}
 %{ if dns_nameservers != "" ~}
 export dns_nameservers='${dns_nameservers}'
