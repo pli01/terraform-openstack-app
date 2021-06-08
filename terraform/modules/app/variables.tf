@@ -78,3 +78,7 @@ variable "github_token" {}
 variable "docker_registry_username" {}
 variable "docker_registry_token" {}
 variable "app_install_script" {}
+variable "app_variables" {
+    type = map
+    default = {}
+}

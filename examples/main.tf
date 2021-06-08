@@ -33,4 +33,5 @@ module "app-pool" {
   docker_registry_username      = var.docker_registry_username
   docker_registry_token         = var.docker_registry_token
   app_install_script            = var.app_install_script
+  app_variables                 = var.app_variables
 }
