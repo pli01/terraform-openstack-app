@@ -7,7 +7,8 @@ libdir=/home/debian
 [ -f ${libdir}/app.cfg ] && source ${libdir}/app.cfg
 
 echo "## app configuration"
-su - debian <<EOF
+su -p - debian <<EOF
+cd /home/debian
 set -x
 export no_proxy=$no_proxy
 export http_proxy=$internal_http_proxy

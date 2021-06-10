@@ -120,12 +120,27 @@ variable "docker_compose_version" {
   default = "1.21.2"
 }
 
-variable "dockerhub_login" {}
-variable "dockerhub_token" {}
-variable "github_token" {}
-variable "docker_registry_username" {}
-variable "docker_registry_token" {}
-variable "app_install_script" {}
+variable "dockerhub_login" {
+  default = ""
+}
+variable "dockerhub_token" {
+  default = ""
+}
+variable "github_token" {
+  default = ""
+}
+
+variable "docker_registry_username" {
+  default = ""
+}
+
+variable "docker_registry_token" {
+  default = ""
+}
+variable "app_install_script" {
+  default = ""
+}
+
 variable "app_variables" {
    type = map
    default = {}
