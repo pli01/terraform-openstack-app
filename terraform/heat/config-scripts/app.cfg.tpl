@@ -20,5 +20,13 @@ export docker_registry_token="${docker_registry_token}"
 %{ if app_install_script != "" ~}
 export app_install_script="${app_install_script}"
 %{ endif ~}
+%{for k,v in app_variables~}
+%{ if v != "" ~}
+export ${k}="${v}"
+%{ else ~}
+export ${k}=""
+%{ endif ~}
+%{endfor~}
+
 #
 EOF

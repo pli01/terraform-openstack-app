@@ -7,7 +7,8 @@ libdir=/home/debian
 [ -f ${libdir}/app.cfg ] && source ${libdir}/app.cfg
 
 echo "## app configuration"
-su - debian <<EOF
+su -p - debian <<EOF
+cd /home/debian
 set -x
 export no_proxy=$no_proxy
 export http_proxy=$internal_http_proxy
@@ -21,8 +22,13 @@ export DOCKER_REGISTRY_USERNAME="$docker_registry_username"
 export DOCKER_REGISTRY_TOKEN="$docker_registry_token"
 export APP_INSTALL_SCRIPT="$app_install_script"
 
+# if authenticated repo
+if [ -n "${GITHUB_TOKEN}" ] ; then
+  curl_args=" -H \"Authorization: token ${GITHUB_TOKEN}\" "
+fi
+
 (
-curl -kL -s -H "Authorization: token \${GITHUB_TOKEN}" \${APP_INSTALL_SCRIPT} | \
+curl -kL -s $curl_args \${APP_INSTALL_SCRIPT} | \
  bash
 ) || exit \$?
 EOF
