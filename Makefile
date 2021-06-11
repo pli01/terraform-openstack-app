@@ -90,5 +90,12 @@ output:| check-var-PROJECT init
 	${TF_BIN} -chdir=${PROJECT} output
 show:| check-var-PROJECT init
 	${TF_BIN} -chdir=${PROJECT} show
+show-json:| check-var-PROJECT init
+	${TF_BIN} -chdir=${PROJECT} show  -json | \
+	   jq -re  '.values.root_module.child_modules[].child_modules[].resources[]|(.name + ": "+.address)' | sort
+
 taint:| check-var-PROJECT init
-	${TF_BIN} -chdir=${PROJECT} taint ${TAINT_ADDRESS}
+	for val in $$(echo "${TAINT_ADDRESS}" |tr -d '[:space:]' | tr ',' '\n'); do \
+           echo "# $${val}" ; \
+           ${TF_BIN} -chdir=${PROJECT} taint -allow-missing "$${val}" ; \
+        done
