@@ -7,7 +7,7 @@ ARG PACKAGES="make unzip wget curl jq python-apt python python-pip apt-transport
 
 # Run
 ENV DEBIAN_FRONTEND noninteractive
-ENV TERRAFORM_VERSION=0.14.10
+ENV TERRAFORM_VERSION=0.15.5
 ENV TERRAGRUNT_VERSION=0.28.22
 
 # Install default packages
