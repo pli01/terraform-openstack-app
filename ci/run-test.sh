@@ -12,4 +12,4 @@ echo "# build docker cli/terraform $TERRAFORM_VERSION"
 make build
 make tf-version
 
-# make tf-validate PROJECT="terraform"
+make tf-validate PROJECT="examples"
