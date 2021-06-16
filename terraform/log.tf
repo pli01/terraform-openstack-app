@@ -16,6 +16,7 @@ module "log" {
   internal_http_proxy      = join(" ", formatlist("%s%s:%s", "http://", flatten(module.http_proxy[*].private_ip), "8888"))
   dns_nameservers          = var.dns_nameservers
   dns_domainname           = var.dns_domainname
+  syslog_relay             = var.syslog_relay
   nexus_server             = var.nexus_server
   mirror_docker            = var.mirror_docker
   mirror_docker_key        = var.mirror_docker_key

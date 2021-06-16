@@ -57,6 +57,9 @@ variable "dns_nameservers" {
 variable "dns_domainname" {
   default = ""
 }
+
+variable "syslog_relay" {}
+
 variable "nexus_server" {
   default = ""
 }

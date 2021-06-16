@@ -116,7 +116,8 @@ resource "openstack_networking_secgroup_rule_v2" "syslog_tcp_worker_log_secgroup
   protocol          = "tcp"
   port_range_min    = 514
   port_range_max    = 514
-  remote_ip_prefix  = var.network_worker["cidr"]
+  #remote_ip_prefix  = var.network_worker["cidr"]
+  remote_ip_prefix  = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.log_secgroup_1.id
 }
 
@@ -127,6 +128,7 @@ resource "openstack_networking_secgroup_rule_v2" "syslog_udp_worker_log_secgroup
   protocol          = "udp"
   port_range_min    = 514
   port_range_max    = 514
-  remote_ip_prefix  = var.network_worker["cidr"]
+  #remote_ip_prefix  = var.network_worker["cidr"]
+  remote_ip_prefix  = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.log_secgroup_1.id
 }

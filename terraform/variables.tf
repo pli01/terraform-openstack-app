@@ -118,6 +118,10 @@ variable "dns_domainname" {
   type    = list(string)
   default = []
 }
+variable "syslog_relay" {
+   default = ""
+}
+
 variable "nexus_server" {
   default = ""
 }
