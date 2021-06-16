@@ -5,6 +5,7 @@ module "app-pool" {
   bastion_count                 = var.bastion_count
   http_proxy_count              = var.http_proxy_count
   app_count                     = var.app_count
+  log_count                     = var.log_count
   image                         = var.image
   most_recent_image             = var.most_recent_image
   external_network              = var.external_network
@@ -16,6 +17,7 @@ module "app-pool" {
   bastion_flavor                = var.bastion_flavor
   http_proxy_flavor             = var.http_proxy_flavor
   app_flavor                    = var.app_flavor
+  log_flavor                    = var.log_flavor
   no_proxy                      = var.no_proxy
   ssh_access_cidr               = var.ssh_access_cidr
   ssh_authorized_keys           = var.ssh_authorized_keys
@@ -34,4 +36,6 @@ module "app-pool" {
   docker_registry_token         = var.docker_registry_token
   app_install_script            = var.app_install_script
   app_variables                 = var.app_variables
+  log_install_script            = var.log_install_script
+  log_variables                 = var.log_variables
 }
