@@ -3,14 +3,14 @@
 Deploy on-premise modules in openstack tenant with terraform.
 This modules create the following resources
   * network/subnet
-  * Floating ip (for bastion and http_proxy)
+  * Floating ips
   * security group/rule for bastion/http_proxy/other
   * 1 root volume acting as template snapshot volume for other instances
-  * 1 bastion instance (for ssh only)
+  * 1 bastion instance (for ssh acces)
   * 1 http_proxy instance (corporate proxy)
-  * N app instances
+  * 1 log instance (defined with your own url log_install_script)
+  * N app instances (defined with your own url app_install_script)
   * Terraform backend state stored in swift
-
 
 # Notes:
 
@@ -40,6 +40,9 @@ Common variables
 | `github_token` | github_token | `github_token` |
 | `docker_registry_username` | docker_registry_username | `docker_registry_username` |
 | `docker_registry_token` | docker_registry_token | `docker_registry_token` |
+| `log_count` | log instance count (0 = disable, 1=enable) | `0` |
+| `log_install_script` | log install script url to deploy (https://mysite.org/install-script.sh)  | |
+| `syslog_relay` | syslog_relay (default point to the fip log stack) | `` |
 | `app_count` | app instance count (0 = disable, 1,2,3...N) | `1` |
 | `app_install_script` | app install script url to deploy (https://mysite.org/install-script.sh)  | |
 
