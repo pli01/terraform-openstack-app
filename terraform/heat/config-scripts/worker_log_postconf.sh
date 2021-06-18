@@ -56,10 +56,10 @@ export LOG_INSTALL_SCRIPT="$log_install_script"
 echo "## generate kibana access list"
 # get local ip and add to kibana access list
 host_ip=$(ip add |awk ' /inet.*eth0$/ { print $2 } ' | awk -F/ ' { print $1 }')
-[ -z "\$host_ip" ] && host_ip=127.0.0.1
+[ -z "$host_ip" ] && host_ip=127.0.0.1
 
-[ -z "\${KIBANA_ACCESS_LIST}" ] && KIBANA_ACCESS_LIST='["all"]'
-export KIBANA_ACCESS_LIST="\${KIBANA_ACCESS_LIST}[\"\$host_ip\"]"
+[ -z "${KIBANA_ACCESS_LIST}" ] && KIBANA_ACCESS_LIST='["all"]'
+export KIBANA_ACCESS_LIST="${KIBANA_ACCESS_LIST}[\"$host_ip\"]"
 
 export ES_MEM=$((( $( cat /proc/meminfo | grep MemTotal | awk '{ print $2 }' ) * 46 ) / 100 ))K
 
@@ -69,7 +69,7 @@ if [ -n "${GITHUB_TOKEN}" ] ; then
 fi
 
 (
-curl -kL -s $curl_args ${LOG_INSTALL_SCRIPT} | \
+eval curl -kL -s $curl_args ${LOG_INSTALL_SCRIPT} | \
  bash
 ) || exit $?
 EOF
