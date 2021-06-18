@@ -7,9 +7,15 @@ libdir=/home/debian
 [ -f ${libdir}/app.cfg ] && source ${libdir}/app.cfg
 
 echo "## app configuration"
-su -p - debian <<EOF
+cat <<'EOF' > /home/debian/deploy-app.sh
+#!/bin/bash
+set -ex -o pipefail
+libdir=/home/debian
+[ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
+[ -f ${libdir}/common_functions.sh ] && source ${libdir}/common_functions.sh
+[ -f ${libdir}/app.cfg ] && source ${libdir}/app.cfg
+
 cd /home/debian
-set -x
 export no_proxy=$no_proxy
 export http_proxy=$internal_http_proxy
 export https_proxy=$internal_http_proxy
@@ -28,9 +34,12 @@ if [ -n "${GITHUB_TOKEN}" ] ; then
 fi
 
 (
-curl -kL -s $curl_args \${APP_INSTALL_SCRIPT} | \
+eval curl -kL -s $curl_args ${APP_INSTALL_SCRIPT} | \
  bash
-) || exit \$?
+) || exit $?
 EOF
+chmod +x /home/debian/deploy-app.sh
+su -p - debian -c "bash -c /home/debian/deploy-app.sh"
+
 
 echo "## End post installation"
