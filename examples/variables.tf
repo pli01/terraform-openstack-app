@@ -16,6 +16,11 @@ variable "app_count" {
   type    = number
   default = 1
 }
+variable "log_count" {
+  type    = number
+  default = 1
+}
+
 
 # Params file for variables
 
@@ -76,6 +81,11 @@ variable "app_flavor" {
   type    = string
   default = "t1.small"
 }
+variable "log_flavor" {
+  type    = string
+  default = "t1.small"
+}
+
 
 #### Variable used in heat and cloud-init
 variable "no_proxy" {
@@ -137,6 +147,16 @@ variable "docker_registry_username" {
 variable "docker_registry_token" {
   default = ""
 }
+# enable metric
+variable "metric_enable" {
+  type = bool
+  default = false
+}
+variable "metric_variables" {
+   type = map
+   default = {}
+}
+
 variable "app_install_script" {
   default = ""
 }
@@ -144,5 +164,9 @@ variable "app_install_script" {
 variable "app_variables" {
    type = map
    default = {}
-   }
+}
+variable "log_variables" {
+  type = map
+  default = {}
+}
 

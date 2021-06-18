@@ -1,7 +1,7 @@
 #!/bin/bash
 # generated terraform template file
 # place here all variables
-cat <<EOF >/home/debian/app.cfg
+cat <<EOF >/home/debian/log.cfg
 %{ if dockerhub_login != "" ~}
 export dockerhub_login="${dockerhub_login}"
 %{ endif ~}
@@ -17,28 +17,16 @@ export docker_registry_username="${docker_registry_username}"
 %{ if docker_registry_token != "" ~}
 export docker_registry_token="${docker_registry_token}"
 %{ endif ~}
-%{ if app_install_script != "" ~}
-export app_install_script="${app_install_script}"
+%{ if log_install_script != "" ~}
+export log_install_script="${log_install_script}"
 %{ endif ~}
-%{for k,v in app_variables~}
+%{for k,v in log_variables~}
 %{ if v != "" ~}
 export ${k}="${v}"
 %{ else ~}
 export ${k}=""
 %{ endif ~}
 %{endfor~}
-%{ if metric_enable != "" ~}
-export metric_enable="${metric_enable}"
-%{ endif ~}
-%{ if metric_install_script != "" ~}
-export metric_install_script="${metric_install_script}"
-%{ endif ~}
-%{for k,v in metric_variables~}
-%{ if v != "" ~}
-export ${k}="${v}"
-%{ else ~}
-export ${k}=""
-%{ endif ~}
-%{endfor~}
+
 #
 EOF

@@ -26,6 +26,9 @@ export dns_nameservers='${dns_nameservers}'
 %{ if dns_domainname != "" ~}
 export dns_domainname='${dns_domainname}'
 %{ endif ~}
+%{ if syslog_relay != "" ~}
+export syslog_relay="${syslog_relay}"
+%{ endif ~}
 %{ if nexus_server != "" ~}
 export nexus_server="${nexus_server}"
 %{ endif ~}

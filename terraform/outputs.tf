@@ -7,6 +7,10 @@ locals {
   app_private_ip        = flatten(module.app[*].private_ip)
   app_id                = flatten(module.app[*].id)
   app_public_ip         = flatten(module.base[*].app_address)
+  log_private_ip        = flatten(module.log[*].private_ip)
+  log_id                = flatten(module.log[*].id)
+  log_public_ip         = flatten(module.base[*].log_address)
+
 }
 
 output "bastion_id" {
@@ -39,4 +43,12 @@ output "app_public_ip" {
   value = local.app_public_ip
 }
 
-
+output "log_id" {
+  value = local.log_id
+}
+output "log_private_ip" {
+  value = local.log_private_ip
+}
+output "log_public_ip" {
+  value = local.log_public_ip
+}

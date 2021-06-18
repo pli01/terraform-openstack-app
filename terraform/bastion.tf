@@ -13,6 +13,7 @@ module "bastion" {
   key_name            = var.key_name
   no_proxy            = var.no_proxy
   ssh_authorized_keys = var.ssh_authorized_keys
+  syslog_relay             = join("",local.log_public_ip)
   depends_on = [
     module.base
   ]

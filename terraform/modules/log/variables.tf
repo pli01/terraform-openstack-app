@@ -75,3 +75,13 @@ variable "docker_version" {
 variable "docker_compose_version" {
   default = ""
 }
+variable "dockerhub_login" {}
+variable "dockerhub_token" {}
+variable "github_token" {}
+variable "docker_registry_username" {}
+variable "docker_registry_token" {}
+variable "log_install_script" {}
+variable "log_variables" {
+    type = map
+    default = {}
+}

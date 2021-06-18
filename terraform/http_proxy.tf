@@ -13,6 +13,7 @@ module "http_proxy" {
   key_name                      = var.key_name
   no_proxy                      = var.no_proxy
   ssh_authorized_keys           = var.ssh_authorized_keys
+  syslog_relay             = join("",local.log_public_ip)
   tinyproxy_upstream            = var.tinyproxy_upstream
   tinyproxy_proxy_authorization = var.tinyproxy_proxy_authorization
   depends_on = [

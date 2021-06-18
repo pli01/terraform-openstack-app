@@ -48,3 +48,7 @@ variable "app_count" {
   type    = number
   default = 1
 }
+variable "log_count" {
+  type    = number
+  default = 0
+}

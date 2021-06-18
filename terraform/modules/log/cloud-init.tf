@@ -1,5 +1,5 @@
-# http_proxy userdata
-data "cloudinit_config" "http_proxy_config" {
+# log userdata
+data "cloudinit_config" "log_config" {
   gzip          = false
   base64_encode = false
 
@@ -31,15 +31,29 @@ data "cloudinit_config" "http_proxy_config" {
   }
   part {
     content_type = "text/plain"
-    content      = file("${path.module}/../../heat/config-scripts/worker_configure_syslog.sh")
+    content      = file("${path.module}/../../heat/config-scripts/worker_install_ssh_keys.sh")
   }
   part {
     content_type = "text/plain"
-    content      = file("${path.module}/../../heat/config-scripts/worker_install_ssh_keys.sh")
+    content      = file("${path.module}/../../heat/config-scripts/worker_install_docker.sh")
   }
+  # log.cfg sourced in log script, and contains all needed variables
+  part {
+    content_type = "text/plain"
+    content = templatefile("${path.module}/../../heat/config-scripts/log.cfg.tpl", {
+      dockerhub_login          = var.dockerhub_login
+      dockerhub_token          = var.dockerhub_token
+      github_token             = var.github_token
+      docker_registry_username = var.docker_registry_username
+      docker_registry_token    = var.docker_registry_token
+      log_install_script       = var.log_install_script
+      log_variables            = var.log_variables
+    })
+  }
+
   # post conf
   part {
     content_type = "text/plain"
-    content      = file("${path.module}/../../heat/config-scripts/worker_http_proxy_postconf.sh")
+    content      = file("${path.module}/../../heat/config-scripts/worker_log_postconf.sh")
   }
 }

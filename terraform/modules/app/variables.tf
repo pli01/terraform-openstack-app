@@ -57,6 +57,9 @@ variable "dns_nameservers" {
 variable "dns_domainname" {
   default = ""
 }
+
+variable "syslog_relay" {}
+
 variable "nexus_server" {
   default = ""
 }
@@ -77,6 +80,15 @@ variable "dockerhub_token" {}
 variable "github_token" {}
 variable "docker_registry_username" {}
 variable "docker_registry_token" {}
+variable "metric_enable" {
+  type = bool
+  default = false
+}
+variable "metric_install_script" {}
+variable "metric_variables" {
+  type = map
+  default = {}
+}
 variable "app_install_script" {}
 variable "app_variables" {
     type = map

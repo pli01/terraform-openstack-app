@@ -20,6 +20,11 @@ variable "app_count" {
   default = 1
 }
 
+variable "log_count" {
+  type    = number
+  default = 0
+}
+
 # Params file for variables
 
 #### GLANCE
@@ -79,6 +84,11 @@ variable "app_flavor" {
   type    = string
   default = "t1.small"
 }
+variable "log_flavor" {
+  type    = string
+  default = "t1.small"
+}
+
 
 #### Variable used in heat and cloud-init
 variable "no_proxy" {
@@ -108,6 +118,10 @@ variable "dns_domainname" {
   type    = list(string)
   default = []
 }
+variable "syslog_relay" {
+   default = ""
+}
+
 variable "nexus_server" {
   default = ""
 }
@@ -139,6 +153,27 @@ variable "docker_registry_username" {
 variable "docker_registry_token" {
   default = ""
 }
+# enable metric
+variable "metric_enable" {
+  type = bool
+  default = false
+}
+variable "metric_install_script" {
+  default = "https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh"
+}
+variable "metric_variables" {
+  type = map
+  default = {}
+}
+# log stack install
+variable "log_install_script" {
+  default = "https://raw.githubusercontent.com/pli01/log-stack/master/ci/docker-deploy.sh"
+}
+variable "log_variables" {
+  type = map
+  default = {}
+}
+# app stack install
 variable "app_install_script" {}
 variable "app_variables" {
     type = map
