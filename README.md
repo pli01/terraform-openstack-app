@@ -12,6 +12,8 @@ This modules create the following resources
   * N app instances (defined with your own url app_install_script)
   * Terraform backend state stored in swift
 
+![Schema](doc/terraform-openstack-app.png)
+
 # Notes:
 
 Prereq:
