@@ -37,7 +37,6 @@ cat <<'EOF' > /home/debian/deploy-logs.sh
 set -ex -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
-[ -f ${libdir}/common_functions.sh ] && source ${libdir}/common_functions.sh
 [ -f ${libdir}/log.cfg ] && source ${libdir}/log.cfg
 
 cd /home/debian
