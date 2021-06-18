@@ -12,7 +12,6 @@ cat <<'EOF' > /home/debian/deploy-app.sh
 set -ex -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
-[ -f ${libdir}/common_functions.sh ] && source ${libdir}/common_functions.sh
 [ -f ${libdir}/app.cfg ] && source ${libdir}/app.cfg
 
 cd /home/debian
