@@ -32,9 +32,14 @@ chown debian. /DATA/.openrc.sh
 chmod 600 /DATA/.openrc.sh
 
 echo "## log configuration"
-cat <<EOF > /home/debian/deploy-logs.sh
+cat <<'EOF' > /home/debian/deploy-logs.sh
 #!/bin/bash
 set -x
+libdir=/home/debian
+[ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
+[ -f ${libdir}/common_functions.sh ] && source ${libdir}/common_functions.sh
+[ -f ${libdir}/log.cfg ] && source ${libdir}/log.cfg
+
 cd /home/debian
 export no_proxy=$no_proxy
 export http_proxy=$internal_http_proxy
@@ -64,9 +69,9 @@ if [ -n "${GITHUB_TOKEN}" ] ; then
 fi
 
 (
-curl -kL -s $curl_args \${LOG_INSTALL_SCRIPT} | \
+curl -kL -s $curl_args ${LOG_INSTALL_SCRIPT} | \
  bash
-) || exit \$?
+) || exit $?
 EOF
 chmod +x /home/debian/deploy-logs.sh
 su -p - debian -c "bash -c /home/debian/deploy-logs.sh"
