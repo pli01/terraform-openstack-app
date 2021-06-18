@@ -9,7 +9,7 @@ libdir=/home/debian
 echo "## app configuration"
 cat <<'EOF' > /home/debian/deploy-app.sh
 #!/bin/bash
-set -ex -o pipefail
+set -e -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
 [ -f ${libdir}/app.cfg ] && source ${libdir}/app.cfg
