@@ -45,6 +45,9 @@ data "cloudinit_config" "app_config" {
   part {
     content_type = "text/plain"
     content = templatefile("${path.module}/../../heat/config-scripts/app.cfg.tpl", {
+      metric_enable                 = var.metric_enable
+      metric_install_script         = var.metric_install_script
+      metric_variables            = var.metric_variables
       dockerhub_login          = var.dockerhub_login
       dockerhub_token          = var.dockerhub_token
       github_token             = var.github_token
@@ -53,6 +56,10 @@ data "cloudinit_config" "app_config" {
       app_install_script       = var.app_install_script
       app_variables            = var.app_variables
     })
+  }
+  part {
+    content_type = "text/plain"
+    content      = file("${path.module}/../../heat/config-scripts/worker_configure_metric.sh")
   }
   # post conf
   part {

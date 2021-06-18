@@ -153,13 +153,29 @@ variable "docker_registry_username" {
 variable "docker_registry_token" {
   default = ""
 }
+# enable metric
+variable "metric_enable" {
+  type = bool
+  default = false
+}
+variable "metric_install_script" {
+  default = "https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh"
+}
+variable "metric_variables" {
+  type = map
+  default = {}
+}
+# log stack install
+variable "log_install_script" {
+  default = "https://raw.githubusercontent.com/pli01/log-stack/master/ci/docker-deploy.sh"
+}
+variable "log_variables" {
+  type = map
+  default = {}
+}
+# app stack install
 variable "app_install_script" {}
 variable "app_variables" {
-    type = map
-    default = {}
-}
-variable "log_install_script" {}
-variable "log_variables" {
     type = map
     default = {}
 }

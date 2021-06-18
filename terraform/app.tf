@@ -27,6 +27,9 @@ module "app" {
   github_token             = var.github_token
   docker_registry_username = var.docker_registry_username
   docker_registry_token    = var.docker_registry_token
+  metric_enable            = var.metric_enable
+  metric_install_script    = var.metric_install_script
+  metric_variables         = var.metric_variables
   app_install_script       = var.app_install_script
   app_variables            = var.app_variables
   depends_on = [

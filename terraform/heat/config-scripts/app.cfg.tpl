@@ -27,6 +27,18 @@ export ${k}="${v}"
 export ${k}=""
 %{ endif ~}
 %{endfor~}
-
+%{ if metric_enable != "" ~}
+export metric_enable="${metric_enable}"
+%{ endif ~}
+%{ if metric_install_script != "" ~}
+export metric_install_script="${metric_install_script}"
+%{ endif ~}
+%{for k,v in metric_variables~}
+%{ if v != "" ~}
+export ${k}="${v}"
+%{ else ~}
+export ${k}=""
+%{ endif ~}
+%{endfor~}
 #
 EOF

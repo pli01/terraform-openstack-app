@@ -34,8 +34,9 @@ module "app-pool" {
   github_token                  = var.github_token
   docker_registry_username      = var.docker_registry_username
   docker_registry_token         = var.docker_registry_token
+  metric_enable                 = var.metric_enable
+  metric_variables              = var.metric_variables
   app_install_script            = var.app_install_script
   app_variables                 = var.app_variables
-  log_install_script            = var.log_install_script
   log_variables                 = var.log_variables
 }

@@ -46,7 +46,7 @@ export DOCKERHUB_TOKEN="$dockerhub_token"
 export GITHUB_TOKEN="$github_token"
 export DOCKER_REGISTRY_USERNAME="$docker_registry_username"
 export DOCKER_REGISTRY_TOKEN="$docker_registry_token"
-export APP_INSTALL_SCRIPT="$log_install_script"
+export LOG_INSTALL_SCRIPT="$log_install_script"
 
 echo "## generate kibana access list"
 # get local ip and add to kibana access list
@@ -64,7 +64,7 @@ if [ -n "${GITHUB_TOKEN}" ] ; then
 fi
 
 (
-curl -kL -s $curl_args \${APP_INSTALL_SCRIPT} | \
+curl -kL -s $curl_args \${LOG_INSTALL_SCRIPT} | \
  bash
 ) || exit \$?
 EOF
