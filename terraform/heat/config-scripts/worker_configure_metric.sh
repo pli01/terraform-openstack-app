@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "# RUNNING: $(dirname $0)/$(basename $0)"
-set -xe -o pipefail
+set -e -o pipefail
 
 libdir=/home/debian
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
