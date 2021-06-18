@@ -34,7 +34,7 @@ chmod 600 /DATA/.openrc.sh
 echo "## log configuration"
 cat <<'EOF' > /home/debian/deploy-logs.sh
 #!/bin/bash
-set -ex -o pipefail
+set -e -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
 [ -f ${libdir}/log.cfg ] && source ${libdir}/log.cfg
