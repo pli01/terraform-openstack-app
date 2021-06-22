@@ -52,3 +52,7 @@ variable "log_count" {
   type    = number
   default = 0
 }
+variable "lb_count" {
+  type    = number
+  default = 0
+}

@@ -25,6 +25,24 @@ variable "log_count" {
   default = 0
 }
 
+# load balancer
+variable "lb_count" {
+  type    = number
+  default = 0
+}
+variable "lb_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "lb_install_script" {
+  default = "https://raw.githubusercontent.com/pli01/lb-stack/master/ci/docker-deploy.sh"
+}
+variable "lb_variables" {
+  type = map
+  default = {}
+}
+
+
 # Params file for variables
 
 #### GLANCE

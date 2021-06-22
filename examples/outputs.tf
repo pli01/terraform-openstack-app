@@ -37,3 +37,12 @@ output "log_private_ip" {
 output "log_public_ip" {
   value = module.app-pool.log_public_ip
 }
+output "lb_id" {
+  value = module.app-pool.lb_id
+}
+output "lb_private_ip" {
+  value = module.app-pool.lb_private_ip
+}
+output "lb_public_ip" {
+  value = module.app-pool.lb_public_ip
+}

@@ -39,4 +39,8 @@ module "app-pool" {
   app_install_script            = var.app_install_script
   app_variables                 = var.app_variables
   log_variables                 = var.log_variables
+  lb_count                      = var.lb_count
+  lb_flavor                     = var.lb_flavor
+  lb_install_script             = var.lb_install_script
+  lb_variables                  = var.lb_variables
 }
