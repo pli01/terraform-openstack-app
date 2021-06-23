@@ -34,6 +34,7 @@ Custom install script used:
   * [load balancer docker stack (traefik+http-provider,nginx,openstack swift)](https://github.com/pli01/lb-stack/)
   * [EFK log docker stack (Elastic,Kibana,Fluentd,Curator)](https://github.com/pli01/log-stack/)
   * [beat docker stack (metricbeat,heartbeat)](https://github.com/pli01/beat-stack/)
+  * [sample app whoami web app](https://gist.githubusercontent.com/pli01/8727bc28df10877552fff9c0240ed46d/raw/054f1f18f5a9d6f5ec0f8a0110ad32ee729adae2/whoami-docker-deploy.sh)
 
 ### Terraform variables
 See details in `terraform/variables.tf` file
