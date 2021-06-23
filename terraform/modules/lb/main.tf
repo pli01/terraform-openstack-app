@@ -5,6 +5,7 @@ resource "openstack_orchestration_stack_v1" "lb" {
   name  = format("%s-%s-%s", var.prefix_name, "lb", count.index + 1)
   # override heat parameters
   parameters = {
+    wait_condition_timeout = var.heat_wait_condition_timeout
     floating_ip_id  = element(var.fip, count.index)
     security_group  = var.security_group
     worker_network  = var.network

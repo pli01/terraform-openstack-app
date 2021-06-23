@@ -25,6 +25,10 @@ variable "log_count" {
   default = 0
 }
 
+variable "heat_wait_condition_timeout" {
+  type    = number
+  default = 1200
+}
 # load balancer
 variable "lb_count" {
   type    = number

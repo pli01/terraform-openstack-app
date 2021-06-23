@@ -12,7 +12,7 @@
     },
     "services": {
         "whoami": {
-            "loadbalancer": 
+            "loadbalancer":
 %{ if traefik_loadbalancers_servers != "" ~}
 ${jsonencode({
              "servers": [
