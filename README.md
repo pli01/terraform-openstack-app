@@ -1,15 +1,19 @@
 # terraform-openstack-app
 
-Deploy on-premise modules in openstack tenant with terraform.
+[![CI](https://github.com/pli01/terraform-openstack-app/actions/workflows/main.yml/badge.svg)](https://github.com/pli01/terraform-openstack-app/actions/workflows/main.yml)
+
+terraform modules to deploy a full customized functional openstack tenant
+
 This modules create the following resources
-  * network/subnet
-  * Floating ips
-  * security group/rule for bastion/http_proxy/other
+  * 1 network/subnet
+  * floating ips
+  * security group/rule for bastion/http_proxy/loadbalancer/logs/app
   * 1 root volume acting as template snapshot volume for other instances
-  * 1 bastion instance (for ssh acces)
-  * 1 http_proxy instance (corporate proxy)
-  * 1 log instance (defined with your own url log_install_script)
-  * N app instances (defined with your own url app_install_script)
+  * 1 bastion stack instance (for ssh acces)
+  * 1 http_proxy stack instance (corporate proxy)
+  * 1 log stack instance (override with your own url log_install_script)
+  * N load-balancer stack instances (override with your own url lb_install_script) with traefik http-provider to swift
+  * N app stack instances (override with your own url app_install_script)
   * Terraform backend state stored in swift
 
 ![Schema](doc/terraform-openstack-app.png)
@@ -20,6 +24,16 @@ Prereq:
   * openstack credentials / tenant
   * (optional) dockerhub credentials
   * (optional) corporate http proxy credentials
+
+this terraform module
+  * provision openstack resources (network,volume,floating-ip security group,swift object)
+  * provision instances with heat stack template (use wait_condition) and cloud_config template
+  * customize cloud-init install script with install_script variables
+
+Custom install script used:
+  * [load balancer docker stack (traefik+http-provider,nginx,openstack swift)](https://github.com/pli01/lb-stack/)
+  * [EFK log docker stack (Elastic,Kibana,Fluentd,Curator)](https://github.com/pli01/log-stack/)
+  * [beat docker stack (metricbeat,heartbeat)](https://github.com/pli01/beat-stack/)
 
 ### Terraform variables
 See details in `terraform/variables.tf` file
@@ -42,11 +56,18 @@ Common variables
 | `github_token` | github_token | `github_token` |
 | `docker_registry_username` | docker_registry_username | `docker_registry_username` |
 | `docker_registry_token` | docker_registry_token | `docker_registry_token` |
-| `log_count` | log instance count (0 = disable, 1=enable) | `0` |
-| `log_install_script` | log install script url to deploy (https://mysite.org/install-script.sh)  | |
-| `syslog_relay` | syslog_relay (default point to the fip log stack) | `` |
+| `syslog_relay` | syslog_relay  | `floating ip log stack` |
+| `log_count` | log instance count (0 = disable, 1=enable) | `1` |
+| `log_install_script` | log install script url to deploy | `https://raw.githubusercontent.com/pli01/log-stack/master/ci/docker-deploy.sh` |
+| `log_variables` | log_variables map ({ VAR=value, VAR2=value2}) | `{}` |
+| `lb_count` | lb instance count (0 = disable, 1=enable) | `1` |
+| `lb_install_script` | lb install script url to deploy | `https://raw.githubusercontent.com/pli01/lb-stack/master/ci/docker-deploy.sh` |
+| `lb_variables` | lb_variables map ({ VAR=value, VAR2=value2}) | `{}` |
+| `metric_enable` | metric_enable on app instances (false, true) | `false` |
+| `metric_install_script` | metric_install_script url to deploy | `https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh` |
 | `app_count` | app instance count (0 = disable, 1,2,3...N) | `1` |
-| `app_install_script` | app install script url to deploy (https://mysite.org/install-script.sh)  | |
+| `app_install_script` | app install script url to deploy | `https://mysite.org/install-script.sh` |
+| `app_variables` | app_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 
 ### Variables
 You can override terraform variables
@@ -87,5 +108,3 @@ make tf-apply PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev
 # ou 
 make tf-deploy PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev/config.auto.vars"
 ```
-## TODO
-* doc/schema
