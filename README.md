@@ -31,7 +31,7 @@ this terraform module
   * customize cloud-init install script with install_script variables
 
 Custom install script used:
-  * [load balancer docker stack (traefik+http-provider,nginx,openstack swift)](https://github.com/pli01/lb-stack/)
+  * [load balancer docker stack (traefik+http-provider,nginx,openstack swift)](https://github.com/pli01/simple-traefik-http-provider)
   * [EFK log docker stack (Elastic,Kibana,Fluentd,Curator)](https://github.com/pli01/log-stack/)
   * [beat docker stack (metricbeat,heartbeat)](https://github.com/pli01/beat-stack/)
   * [sample app whoami web app](https://gist.githubusercontent.com/pli01/8727bc28df10877552fff9c0240ed46d/raw/054f1f18f5a9d6f5ec0f8a0110ad32ee729adae2/whoami-docker-deploy.sh)
@@ -62,7 +62,7 @@ Common variables
 | `log_install_script` | log install script url to deploy | `https://raw.githubusercontent.com/pli01/log-stack/master/ci/docker-deploy.sh` |
 | `log_variables` | log_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 | `lb_count` | lb instance count (0 = disable, 1=enable) | `1` |
-| `lb_install_script` | lb install script url to deploy | `https://raw.githubusercontent.com/pli01/lb-stack/master/ci/docker-deploy.sh` |
+| `lb_install_script` | lb install script url to deploy | `https://raw.githubusercontent.com/pli01/simple-traefik-http-provider/main/ci/docker-deploy.sh` |
 | `lb_variables` | lb_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 | `metric_enable` | metric_enable on app instances (false, true) | `false` |
 | `metric_install_script` | metric_install_script url to deploy | `https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh` |

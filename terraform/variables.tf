@@ -5,59 +5,6 @@ variable "prefix_name" {
   default = "test"
 }
 
-variable "bastion_count" {
-  type    = number
-  default = 1
-}
-
-variable "http_proxy_count" {
-  type    = number
-  default = 1
-}
-
-variable "app_count" {
-  type    = number
-  default = 1
-}
-
-variable "log_count" {
-  type    = number
-  default = 0
-}
-
-variable "heat_wait_condition_timeout" {
-  type    = number
-  default = 1200
-}
-# load balancer
-variable "lb_count" {
-  type    = number
-  default = 0
-}
-variable "lb_flavor" {
-  type    = string
-  default = "t1.small"
-}
-variable "lb_install_script" {
-  default = "https://raw.githubusercontent.com/pli01/lb-stack/master/ci/docker-deploy.sh"
-}
-variable "lb_variables" {
-  type = map
-  default = {}
-}
-
-
-# Params file for variables
-
-#### GLANCE
-variable "image" {
-  type    = string
-  default = "debian-latest"
-}
-variable "most_recent_image" {
-  # default = "true"
-  default = "false"
-}
 #### NEUTRON
 variable "external_network" {
   type    = string
@@ -88,29 +35,26 @@ variable "vol_type" {
   default = "default"
 }
 
+#### GLANCE
+variable "image" {
+  type    = string
+  default = "debian-latest"
+}
+variable "most_recent_image" {
+  # default = "true"
+  default = "false"
+}
+
 #### VM parameters ####
 variable "key_name" {
   type    = string
   default = "debian"
 }
 
-variable "bastion_flavor" {
-  type    = string
-  default = "t1.small"
+variable "heat_wait_condition_timeout" {
+  type    = number
+  default = 1200
 }
-variable "http_proxy_flavor" {
-  type    = string
-  default = "t1.small"
-}
-variable "app_flavor" {
-  type    = string
-  default = "t1.small"
-}
-variable "log_flavor" {
-  type    = string
-  default = "t1.small"
-}
-
 
 #### Variable used in heat and cloud-init
 variable "no_proxy" {
@@ -126,6 +70,26 @@ variable "ssh_access_cidr" {
 variable "ssh_authorized_keys" {
   type    = list(string)
   default = []
+}
+
+# bastion
+variable "bastion_count" {
+  type    = number
+  default = 1
+}
+variable "bastion_flavor" {
+  type    = string
+  default = "t1.small"
+}
+
+# http-proxy out
+variable "http_proxy_count" {
+  type    = number
+  default = 1
+}
+variable "http_proxy_flavor" {
+  type    = string
+  default = "t1.small"
 }
 
 #### http_proxy #####
@@ -187,6 +151,17 @@ variable "metric_variables" {
   type = map
   default = {}
 }
+
+# log
+variable "log_flavor" {
+  type    = string
+  default = "t1.small"
+}
+
+variable "log_count" {
+  type    = number
+  default = 0
+}
 # log stack install
 variable "log_install_script" {
   default = "https://raw.githubusercontent.com/pli01/log-stack/master/ci/docker-deploy.sh"
@@ -195,8 +170,36 @@ variable "log_variables" {
   type = map
   default = {}
 }
-# app stack install
-variable "app_install_script" {}
+
+# load balancer
+variable "lb_count" {
+  type    = number
+  default = 0
+}
+variable "lb_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "lb_install_script" {
+  default = "https://raw.githubusercontent.com/pli01/simple-traefik-http-provider/main/ci/docker-deploy.sh"
+}
+variable "lb_variables" {
+  type = map
+  default = {}
+}
+
+# application stack
+variable "app_count" {
+  type    = number
+  default = 1
+}
+variable "app_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "app_install_script" {
+  default = "https://gist.githubusercontent.com/pli01/8727bc28df10877552fff9c0240ed46d/raw/054f1f18f5a9d6f5ec0f8a0110ad32ee729adae2/whoami-docker-deploy.sh"
+}
 variable "app_variables" {
     type = map
     default = {}
