@@ -1,8 +1,8 @@
 #### Heat CONFIGURATION ####
 # create heat stack
-resource "openstack_orchestration_stack_v1" "app" {
+resource "openstack_orchestration_stack_v1" "lb" {
   count = var.maxcount
-  name  = format("%s-%s-%s", var.prefix_name, "app", count.index + 1)
+  name  = format("%s-%s-%s", var.prefix_name, "lb", count.index + 1)
   # override heat parameters
   parameters = {
     wait_condition_timeout = var.heat_wait_condition_timeout
@@ -14,18 +14,18 @@ resource "openstack_orchestration_stack_v1" "app" {
     worker_vol_type = var.vol_type
     worker_flavor   = var.flavor
     key_name        = var.key_name
-    user_data       = data.cloudinit_config.app_config.rendered
+    user_data       = data.cloudinit_config.lb_config.rendered
   }
   # override heat parameters with param files
   environment_opts = {
     Bin = "\n"
-    # Bin = file("heat/app-param.yaml")
+    # Bin = file("heat/lb-param.yaml")
   }
   # define heat file
   template_opts = {
-    Bin = file("${path.module}/../../heat/app.yaml")
-    # Bin = file("${path.root}/heat/app.yaml")
-    #Bin = file("${path.cwd}/heat/app.yaml")
+    Bin = file("${path.module}/../../heat/lb.yaml")
+    # Bin = file("${path.root}/heat/lb.yaml")
+    #Bin = file("${path.cwd}/heat/lb.yaml")
   }
   disable_rollback = true
   #  disable_rollback = false

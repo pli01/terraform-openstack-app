@@ -34,26 +34,33 @@ output "http_proxy_secgroup_id" {
 }
 
 # app
-output "app_secgroup_id" {
-  value = openstack_networking_secgroup_v2.app_secgroup_1.id
-}
-
-# app
 output "app_id" {
   value = openstack_networking_floatingip_v2.app[*].id
 }
 output "app_address" {
   value = openstack_networking_floatingip_v2.app[*].address
 }
-# log
-output "log_secgroup_id" {
-  value = openstack_networking_secgroup_v2.log_secgroup_1.id
+output "app_secgroup_id" {
+  value = openstack_networking_secgroup_v2.app_secgroup_1.id
 }
-
 # log
 output "log_id" {
   value = openstack_networking_floatingip_v2.log[*].id
 }
 output "log_address" {
   value = openstack_networking_floatingip_v2.log[*].address
+}
+output "log_secgroup_id" {
+  value = openstack_networking_secgroup_v2.log_secgroup_1.id
+}
+
+# lb
+output "lb_id" {
+  value = openstack_networking_floatingip_v2.lb[*].id
+}
+output "lb_address" {
+  value = openstack_networking_floatingip_v2.lb[*].address
+}
+output "lb_secgroup_id" {
+  value = openstack_networking_secgroup_v2.lb_secgroup_1.id
 }

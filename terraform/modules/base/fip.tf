@@ -14,3 +14,7 @@ resource "openstack_networking_floatingip_v2" "log" {
   count = var.log_count
   pool  = var.external_network
 }
+resource "openstack_networking_floatingip_v2" "lb" {
+  count = var.lb_count
+  pool  = var.external_network
+}

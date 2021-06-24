@@ -21,6 +21,17 @@ variable "log_count" {
   default = 1
 }
 
+# lb
+variable "lb_count" {
+  type    = number
+  default = 1
+}
+variable "lb_flavor" {
+  type    = string
+  default = "t1.small"
+}
+
+
 
 # Params file for variables
 
@@ -166,6 +177,13 @@ variable "app_variables" {
    default = {}
 }
 variable "log_variables" {
+  type = map
+  default = {}
+}
+variable "lb_install_script" {
+  default = ""
+}
+variable "lb_variables" {
   type = map
   default = {}
 }

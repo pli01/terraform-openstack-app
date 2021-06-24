@@ -2,6 +2,7 @@ module "http_proxy" {
   source                        = "./modules/http_proxy"
   maxcount                      = var.http_proxy_count
   prefix_name                   = var.prefix_name
+  heat_wait_condition_timeout =  var.heat_wait_condition_timeout
   fip                           = module.base.http_proxy_id
   network                       = module.base.network_id
   subnet                        = module.base.subnet_id

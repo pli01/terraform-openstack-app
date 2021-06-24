@@ -2,6 +2,7 @@ module "bastion" {
   source              = "./modules/bastion"
   maxcount            = var.bastion_count
   prefix_name         = var.prefix_name
+  heat_wait_condition_timeout =  var.heat_wait_condition_timeout
   fip                 = module.base.bastion_id
   network             = module.base.network_id
   subnet              = module.base.subnet_id

@@ -10,6 +10,9 @@ locals {
   log_private_ip        = flatten(module.log[*].private_ip)
   log_id                = flatten(module.log[*].id)
   log_public_ip         = flatten(module.base[*].log_address)
+  lb_private_ip        = flatten(module.lb[*].private_ip)
+  lb_id                = flatten(module.lb[*].id)
+  lb_public_ip         = flatten(module.base[*].lb_address)
 
 }
 
@@ -51,4 +54,14 @@ output "log_private_ip" {
 }
 output "log_public_ip" {
   value = local.log_public_ip
+}
+
+output "lb_id" {
+  value = local.lb_id
+}
+output "lb_private_ip" {
+  value = local.lb_private_ip
+}
+output "lb_public_ip" {
+  value = local.lb_public_ip
 }
