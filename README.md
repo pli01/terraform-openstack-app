@@ -2,9 +2,9 @@
 
 [![CI](https://github.com/pli01/terraform-openstack-app/actions/workflows/main.yml/badge.svg)](https://github.com/pli01/terraform-openstack-app/actions/workflows/main.yml)
 
-terraform modules to deploy a full customized functional openstack tenant
+Terraform modules which creates multiple customized functional resources on an Openstack Project/Tenant
 
-This modules create the following resources
+This module create the following resources
   * 1 network/subnet
   * floating ips
   * security group/rule for bastion/http_proxy/loadbalancer/logs/app
@@ -13,7 +13,7 @@ This modules create the following resources
   * 1 http_proxy stack instance (corporate proxy)
   * 1 log stack instance (override with your own url log_install_script)
   * N load-balancer stack instances (override with your own url lb_install_script) with traefik http-provider to swift
-  * N app stack instances (override with your own url app_install_script)
+  * N app, application stack instances (override with your own url app_install_script)
   * Terraform backend state stored in swift
 
 ![Schema](doc/terraform-openstack-app.png)
