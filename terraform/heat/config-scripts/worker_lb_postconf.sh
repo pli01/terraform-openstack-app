@@ -36,7 +36,7 @@ export no_proxy=$no_proxy
 export http_proxy=$internal_http_proxy
 export https_proxy=$internal_http_proxy
 
-export DOCKERHUB_LBIN="$dockerhub_lbin"
+export DOCKERHUB_LOGIN="$dockerhub_login"
 export DOCKERHUB_TOKEN="$dockerhub_token"
 
 export GITHUB_TOKEN="$github_token"
