@@ -30,5 +30,11 @@ resource "openstack_orchestration_stack_v1" "app" {
   disable_rollback = true
   #  disable_rollback = false
   timeout = 30
+  lifecycle {
+  ignore_changes = [
+     parameters,
+     template_opts,
+    ]
+  }
 }
 
