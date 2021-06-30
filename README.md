@@ -34,7 +34,7 @@ Custom install script used:
   * [load balancer docker stack (traefik+http-provider,nginx,openstack swift)](https://github.com/pli01/simple-traefik-http-provider)
   * [EFK log docker stack (Elastic,Kibana,Fluentd,Curator)](https://github.com/pli01/log-stack/)
   * [beat docker stack (metricbeat,heartbeat)](https://github.com/pli01/beat-stack/)
-  * [sample app whoami web app](https://gist.githubusercontent.com/pli01/8727bc28df10877552fff9c0240ed46d/raw/054f1f18f5a9d6f5ec0f8a0110ad32ee729adae2/whoami-docker-deploy.sh)
+  * [sample app ](./samples/)
 
 ### Terraform variables
 See details in `terraform/variables.tf` file
@@ -67,7 +67,7 @@ Common variables
 | `metric_enable` | metric_enable on app instances (false, true) | `false` |
 | `metric_install_script` | metric_install_script url to deploy | `https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh` |
 | `app_count` | app instance count (0 = disable, 1,2,3...N) | `1` |
-| `app_install_script` | app install script url to deploy | `https://mysite.org/install-script.sh` |
+| `app_install_script` | app install script url to deploy | `https://raw.githubusercontent.com/pli01/terraform-openstack-app/main/samples/app/whoami/whoami-docker-deploy.sh` |
 | `app_variables` | app_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 
 ### Variables
@@ -106,6 +106,6 @@ make tf-format PROJECT="terraform"
 make tf-validate PROJECT="terraform"
 make tf-plan PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev/config.auto.vars"
 make tf-apply PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev/config.auto.vars"
-# ou 
+# or
 make tf-deploy PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev/config.auto.vars"
 ```
