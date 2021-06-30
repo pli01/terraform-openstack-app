@@ -27,6 +27,9 @@ data "cloudinit_config" "log_config" {
       mirror_docker_key             = var.mirror_docker_key
       docker_version                = var.docker_version
       docker_compose_version        = var.docker_compose_version
+      metric_enable                 = var.metric_enable
+      metric_install_script         = var.metric_install_script
+      metric_variables              = var.metric_variables
     })
   }
   part {

@@ -27,6 +27,9 @@ data "cloudinit_config" "lb_config" {
       mirror_docker_key             = var.mirror_docker_key
       docker_version                = var.docker_version
       docker_compose_version        = var.docker_compose_version
+      metric_enable                 = var.metric_enable
+      metric_install_script         = var.metric_install_script
+      metric_variables              = var.metric_variables
     })
   }
   part {
@@ -45,9 +48,6 @@ data "cloudinit_config" "lb_config" {
   part {
     content_type = "text/plain"
     content = templatefile("${path.module}/../../heat/config-scripts/lb.cfg.tpl", {
-      metric_enable                 = var.metric_enable
-      metric_install_script         = var.metric_install_script
-      metric_variables            = var.metric_variables
       dockerhub_login          = var.dockerhub_login
       dockerhub_token          = var.dockerhub_token
       github_token             = var.github_token

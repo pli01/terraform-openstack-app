@@ -198,7 +198,7 @@ variable "app_flavor" {
   default = "t1.small"
 }
 variable "app_install_script" {
-  default = "https://gist.githubusercontent.com/pli01/8727bc28df10877552fff9c0240ed46d/raw/054f1f18f5a9d6f5ec0f8a0110ad32ee729adae2/whoami-docker-deploy.sh"
+  default = "https://raw.githubusercontent.com/pli01/terraform-openstack-app/main/samples/app/whoami/whoami-docker-deploy.sh"
 }
 variable "app_variables" {
     type = map
