@@ -80,11 +80,6 @@ variable "docker_version" {
 variable "docker_compose_version" {
   default = ""
 }
-variable "dockerhub_login" {}
-variable "dockerhub_token" {}
-variable "github_token" {}
-variable "docker_registry_username" {}
-variable "docker_registry_token" {}
 variable "metric_enable" {
   type = bool
   default = false
@@ -94,6 +89,13 @@ variable "metric_variables" {
   type = map
   default = {}
 }
+
+variable "dockerhub_login" {}
+variable "dockerhub_token" {}
+variable "github_token" {}
+variable "docker_registry_username" {}
+variable "docker_registry_token" {}
+
 variable "lb_install_script" {}
 variable "lb_variables" {
     type = map

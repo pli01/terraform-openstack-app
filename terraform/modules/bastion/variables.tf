@@ -80,3 +80,16 @@ variable "docker_version" {
 variable "docker_compose_version" {
   default = ""
 }
+variable "metric_enable" {
+  type = bool
+  default = false
+}
+variable "metric_install_script" {
+  default = ""
+}
+variable "metric_variables" {
+  type = map
+  default = {}
+}
+
+
