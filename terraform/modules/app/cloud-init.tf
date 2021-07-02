@@ -1,7 +1,3 @@
-locals {
-  dollar = "$"
-}
-
 # app userdata
 data "cloudinit_config" "app_config" {
   gzip          = false
