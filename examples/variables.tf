@@ -163,10 +163,15 @@ variable "metric_enable" {
   type = bool
   default = false
 }
-variable "metric_variables" {
+variable "app_metric_variables" {
    type = map
    default = {}
 }
+variable "lb_metric_variables" {
+   type = map
+   default = {}
+}
+
 
 variable "app_install_script" {
   default = ""

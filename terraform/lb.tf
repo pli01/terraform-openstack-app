@@ -30,9 +30,9 @@ module "lb" {
   docker_registry_token    = var.docker_registry_token
   metric_enable            = var.metric_enable
   metric_install_script    = var.metric_install_script
-  metric_variables         = var.metric_variables
-  lb_install_script       = var.lb_install_script
-  lb_variables            = var.lb_variables
+  metric_variables         = var.lb_metric_variables
+  lb_install_script        = var.lb_install_script
+  lb_variables             = var.lb_variables
   depends_on = [
     module.base,
     module.bastion,

@@ -147,7 +147,13 @@ variable "metric_enable" {
 variable "metric_install_script" {
   default = "https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh"
 }
-variable "metric_variables" {
+
+variable "app_metric_variables" {
+  type = map
+  default = {}
+}
+
+variable "lb_metric_variables" {
   type = map
   default = {}
 }
