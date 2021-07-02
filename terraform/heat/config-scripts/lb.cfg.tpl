@@ -1,7 +1,7 @@
 #!/bin/bash
 # generated terraform template file
 # place here all variables
-cat <<EOF >/home/debian/lb.cfg
+cat <<'EOF' >/home/debian/lb.cfg
 %{ if dockerhub_login != "" ~}
 export dockerhub_login="${dockerhub_login}"
 %{ endif ~}

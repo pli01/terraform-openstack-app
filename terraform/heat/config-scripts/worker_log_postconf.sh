@@ -2,6 +2,7 @@
 echo "# RUNNING: $(dirname $0)/$(basename $0)"
 set -e -o pipefail
 libdir=/home/debian
+[ -f ${libdir}/local.cfg ] && source ${libdir}/local.cfg
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
 [ -f ${libdir}/common_functions.sh ] && source ${libdir}/common_functions.sh
 [ -f ${libdir}/log.cfg ] && source ${libdir}/log.cfg
@@ -36,6 +37,7 @@ cat <<'EOF' > /home/debian/deploy-logs.sh
 #!/bin/bash
 set -e -o pipefail
 libdir=/home/debian
+[ -f ${libdir}/local.cfg ] && source ${libdir}/local.cfg
 [ -f ${libdir}/config.cfg ] && source ${libdir}/config.cfg
 [ -f ${libdir}/log.cfg ] && source ${libdir}/log.cfg
 
