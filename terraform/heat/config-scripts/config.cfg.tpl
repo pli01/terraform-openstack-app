@@ -1,7 +1,7 @@
 #!/bin/bash
 # generated terraform template file
 # place here all variables
-cat <<EOF >/home/debian/config.cfg
+cat <<'EOF' >/home/debian/config.cfg
 # configuration file for all shell scripts
 %{ if ssh_authorized_keys != "" ~}
 export ssh_authorized_keys='${ssh_authorized_keys}'
@@ -57,5 +57,4 @@ export ${k}="${v}"
 export ${k}=""
 %{ endif ~}
 %{endfor~}
-
 EOF
