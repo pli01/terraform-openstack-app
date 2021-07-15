@@ -44,4 +44,6 @@ module "app-pool" {
   lb_flavor                     = var.lb_flavor
   lb_install_script             = var.lb_install_script
   lb_variables                  = var.lb_variables
+  bastion_data_enable           = var.bastion_data_enable
+  log_data_enable               = var.log_data_enable
 }

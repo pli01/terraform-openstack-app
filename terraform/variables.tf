@@ -210,3 +210,13 @@ variable "app_variables" {
     type = map
     default = {}
 }
+
+variable "log_data_enable" {
+  type = bool
+  default = false
+}
+
+variable "bastion_data_enable" {
+  type = bool
+  default = false
+}

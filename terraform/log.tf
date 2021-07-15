@@ -8,6 +8,9 @@ module "log" {
   subnet                   = module.base.subnet_id
   source_volid             = module.base.root_volume_id
   security_group           = module.base.log_secgroup_id
+  log_data_enable          = var.log_data_enable
+  worker_data_volume_id    = openstack_blockstorage_volume_v2.log-data_volume[*].id
+
   vol_type                 = var.vol_type
   flavor                   = var.log_flavor
   image                    = var.image

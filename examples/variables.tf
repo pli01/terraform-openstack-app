@@ -193,3 +193,10 @@ variable "lb_variables" {
   default = {}
 }
 
+variable "bastion_data_enable" {
+  type = bool
+}
+variable "log_data_enable" {
+  type = bool
+}
+
