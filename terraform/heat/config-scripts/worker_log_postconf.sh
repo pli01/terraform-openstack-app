@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "# RUNNING: $(dirname $0)/$(basename $0)"
-set -x
+#set -x
 set -e -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/local.cfg ] && source ${libdir}/local.cfg
@@ -37,7 +37,7 @@ chmod 600 /DATA/.openrc.sh
 echo "## log configuration"
 cat <<'EOF' > /home/debian/deploy-logs.sh
 #!/bin/bash
-set -x
+#set -x
 set -e -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/local.cfg ] && source ${libdir}/local.cfg
