@@ -61,7 +61,7 @@ eval curl -kL -s $curl_args ${LB_INSTALL_SCRIPT} | \
 ) || exit $?
 EOF
 chmod +x /home/debian/deploy-lb.sh
-su -p - debian -c "bash -c /home/debian/deploy-lb.sh"
+su - debian -c "bash -c /home/debian/deploy-lb.sh"
 
 
 echo "## End post installation"

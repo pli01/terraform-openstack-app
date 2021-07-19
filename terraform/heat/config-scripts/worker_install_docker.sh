@@ -69,7 +69,7 @@ export PYPI_URL=https://${REGISTRY_URL}/repository/pypi-proxy/simple
 export PYPI_HOST=${REGISTRY_URL}
 export REGISTRY_URL PYPI_URL PYPI_HOST
 
-set -ex && [ -z "$PYPI_URL" ] || pip_args=" --index-url $PYPI_URL " ; \
+set -e && [ -z "$PYPI_URL" ] || pip_args=" --index-url $PYPI_URL " ; \
   [ -z "$PYPI_HOST" ] || pip_args="$pip_args --trusted-host $PYPI_HOST " ; \
   echo "$no_proxy" |tr ',' '\n' | sort -u |grep "^$PYPI_HOST$" || \
   [ -z "$http_proxy" ] || pip_args="$pip_args --proxy $http_proxy "
@@ -89,9 +89,12 @@ pip install $pip_args "docker-compose==$docker_compose_version"
 # post conf
 # config docker proxy
 
+#docker_data_root="/DATA/docker"
+docker_data_root="${docker_data_root:-}"
+
 cat <<EOF > /etc/docker/daemon.json
 {
-    "data-root": "/DATA/docker",
+    "data-root": "$docker_data_root",
     "dns": ${dns_nameservers},
     "dns-search": ${dns_domainname},
     "insecure-registries": [

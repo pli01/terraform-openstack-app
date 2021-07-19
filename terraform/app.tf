@@ -8,6 +8,8 @@ module "app" {
   subnet                   = module.base.subnet_id
   source_volid             = module.base.root_volume_id
   security_group           = module.base.app_secgroup_id
+  app_data_enable          = var.app_data_enable
+  worker_data_volume_id    = openstack_blockstorage_volume_v2.app-data_volume[*].id
   vol_type                 = var.vol_type
   flavor                   = var.app_flavor
   image                    = var.image

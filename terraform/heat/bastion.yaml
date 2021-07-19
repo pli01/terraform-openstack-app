@@ -202,7 +202,8 @@ resources:
              # generate local.cfg
              #
              echo "# RUNNING: $(dirname $0)/$(basename $0)"
-             set -xe -o pipefail
+             #set -x
+             set -e -o pipefail
              libdir=/home/debian
              common_functions=${libdir}/common_functions.sh
              [ -f ${common_functions} ] && source ${common_functions}
@@ -229,7 +230,8 @@ resources:
          # trigger wait condition
          #
          echo "# RUNNING: $(dirname $0)/$(basename $0)"
-         set -xe -o pipefail
+         #set -x
+         set -e -o pipefail
          libdir=/home/debian
          common_functions=${libdir}/common_functions.sh
          [ -f ${common_functions} ] && source ${common_functions}

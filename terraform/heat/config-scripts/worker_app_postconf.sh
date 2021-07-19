@@ -39,8 +39,8 @@ eval curl -kL -s $curl_args ${APP_INSTALL_SCRIPT} | \
  bash
 ) || exit $?
 EOF
+echo "# run /home/debian/deploy-app.sh"
 chmod +x /home/debian/deploy-app.sh
-su -p - debian -c "bash -c /home/debian/deploy-app.sh"
-
+su - debian -c "bash -c /home/debian/deploy-app.sh"
 
 echo "## End post installation"

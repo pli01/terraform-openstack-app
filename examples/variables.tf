@@ -196,7 +196,19 @@ variable "lb_variables" {
 variable "bastion_data_enable" {
   type = bool
 }
+variable "bastion_data_size" {
+  type = number
+}
 variable "log_data_enable" {
   type = bool
+}
+variable "log_data_size" {
+  type = number
+}
+variable "app_data_enable" {
+  type = bool
+}
+variable "app_data_size" {
+  type = number
 }
 

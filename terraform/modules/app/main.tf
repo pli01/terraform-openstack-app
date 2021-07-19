@@ -11,6 +11,7 @@ resource "openstack_orchestration_stack_v1" "app" {
     worker_network  = var.network
     worker_subnet   = var.subnet
     source_volid    = var.source_volid
+    worker_data_volume_id   = var.app_data_enable ? var.worker_data_volume_id[count.index] : null
     worker_vol_type = var.vol_type
     worker_flavor   = var.flavor
     key_name        = var.key_name
@@ -18,7 +19,10 @@ resource "openstack_orchestration_stack_v1" "app" {
   }
   # override heat parameters with param files
   environment_opts = {
-    Bin = "\n"
+    #Bin = "\n"
+    Bin = templatefile("${path.module}/../../heat/app-env.yaml.tpl", {
+      app_data_enable = var.app_data_enable
+       })
     # Bin = file("heat/app-param.yaml")
   }
   # define heat file

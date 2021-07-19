@@ -202,7 +202,7 @@ resources:
              # generate local.cfg
              #
              echo "# RUNNING: $(dirname $0)/$(basename $0)"
-             set -xe -o pipefail
+             set -e -o pipefail
              libdir=/home/debian
              common_functions=${libdir}/common_functions.sh
              [ -f ${common_functions} ] && source ${common_functions}
@@ -214,7 +214,7 @@ resources:
              export META_DATA_LOCAL_IPV4="$( eval wget $wget_args $meta_data_url/local-ipv4)"
              export META_DATA_PUBLIC_IPV4="$( eval wget $wget_args $meta_data_url/public-ipv4)"
              export META_DATA_AVAILABILITY_ZONE="$(eval wget $wget_args $meta_data_url/placement/availability-zone)"
-             export volume_id=$volume_id
+             export volume_id="$volume_id"
              EOF
            params:
              $volume_id: { get_param: worker_data_volume_id }
@@ -229,7 +229,7 @@ resources:
          # trigger wait condition
          #
          echo "# RUNNING: $(dirname $0)/$(basename $0)"
-         set -xe -o pipefail
+         set -e -o pipefail
          libdir=/home/debian
          common_functions=${libdir}/common_functions.sh
          [ -f ${common_functions} ] && source ${common_functions}
