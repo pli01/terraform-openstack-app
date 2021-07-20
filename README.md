@@ -37,19 +37,22 @@ Custom install script used:
   * [sample app ](./samples/)
 
 ### Terraform variables
-See details in `terraform/variables.tf` file
+See details in `terraform/variables.tf` file and `examples` dir
 
 Common variables
 | Name | description | Value |
 | --- | --- | --- |
 | `prefix_name` | environment prefix | `test` |
 | `image` | cloud image | `debian9-latest` |
-| `flavor` | cloud flavor | `standard-2.2` |
-| `vol_size` | volume size (Go) | `10` |
+| `vol_size` | root volume size (Go) | `10` |
 | `vol_type` | volume type | `ceph` |
 | `key_name` | key_name to allow ssh connection  | `debian` |
 | `bastion_count` | bastion count (0 = disable, 1=enable) | `1` |
+| `bastion_flavor` | bastion flavor | `standard-2.2` |
+| `bastion_data_enable` | data added disk (true or false)| `false` |
+| `bastion_data_size` | data disk size (Go)| `0` |
 | `http_proxy_count` | http_proxy count (0 = disable, 1=enable) | `1` |
+| `http_proxy_flavor` | http_proxy flavor | `standard-2.2` |
 | `tinyproxy_upstream` | default tinyproxy_upstream | `["upstream proxy1:3128"]` |
 | `tinyproxy_proxy_authorization` | tinyproxy_proxy_authorization | `base64(login:password)` |
 | `dockerhub_login` | dockerhub_login | `login` |
@@ -59,14 +62,23 @@ Common variables
 | `docker_registry_token` | docker_registry_token | `docker_registry_token` |
 | `syslog_relay` | syslog_relay  | `floating ip log stack` |
 | `log_count` | log instance count (0 = disable, 1=enable) | `1` |
+| `log_flavor` | log flavor | `standard-2.2` |
+| `log_data_enable` | data added disk (true or false)| `false` |
+| `log_data_size` | data disk size (Go)| `0` |
 | `log_install_script` | log install script url to deploy | `https://raw.githubusercontent.com/pli01/log-stack/master/ci/docker-deploy.sh` |
 | `log_variables` | log_variables map ({ VAR=value, VAR2=value2}) | `{}` |
-| `lb_count` | lb instance count (0 = disable, 1=enable) | `1` |
-| `lb_install_script` | lb install script url to deploy | `https://raw.githubusercontent.com/pli01/simple-traefik-http-provider/main/ci/docker-deploy.sh` |
-| `lb_variables` | lb_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 | `metric_enable` | metric_enable on app instances (false, true) | `false` |
 | `metric_install_script` | metric_install_script url to deploy | `https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh` |
+| `lb_count` | lb instance count (0 = disable, 1=enable) | `1` |
+| `lb_flavor` | lb flavor | `standard-2.2` |
+| `lb_metric_variables` | metric_enable on app instances | `{}` |
+| `lb_install_script` | lb install script url to deploy | `https://raw.githubusercontent.com/pli01/simple-traefik-http-provider/main/ci/docker-deploy.sh` |
+| `lb_variables` | lb_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 | `app_count` | app instance count (0 = disable, 1,2,3...N) | `1` |
+| `app_flavor` | app flavor | `standard-2.2` |
+| `app_data_enable` | data added disk (true or false)| `false` |
+| `app_data_size` | data disk size (Go)| `0` |
+| `app_metric_variables` | metric_enable on app instances ({ VAR=value, VAR2=value2}) | `{}` |
 | `app_install_script` | app install script url to deploy | `https://raw.githubusercontent.com/pli01/terraform-openstack-app/main/samples/app/whoami/whoami-docker-deploy.sh` |
 | `app_variables` | app_variables map ({ VAR=value, VAR2=value2}) | `{}` |
 
