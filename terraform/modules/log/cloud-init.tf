@@ -34,6 +34,10 @@ data "cloudinit_config" "log_config" {
   }
   part {
     content_type = "text/plain"
+    content      = file("${path.module}/../../heat/config-scripts/worker_data_volume_attachment.sh")
+  }
+  part {
+    content_type = "text/plain"
     content      = file("${path.module}/../../heat/config-scripts/worker_install_ssh_keys.sh")
   }
   part {

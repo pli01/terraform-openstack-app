@@ -2,10 +2,6 @@ module "app-pool" {
   #source                        = "github.com/pli01/terraform-openstack-app//terraform?ref=main"
   source                        = "../terraform"
   prefix_name                   = var.prefix_name
-  bastion_count                 = var.bastion_count
-  http_proxy_count              = var.http_proxy_count
-  app_count                     = var.app_count
-  log_count                     = var.log_count
   image                         = var.image
   most_recent_image             = var.most_recent_image
   external_network              = var.external_network
@@ -14,10 +10,12 @@ module "app-pool" {
   vol_type                      = var.vol_type
   vol_size                      = var.vol_size
   key_name                      = var.key_name
+  bastion_count                 = var.bastion_count
   bastion_flavor                = var.bastion_flavor
+  bastion_data_enable           = var.bastion_data_enable
+  bastion_data_size             = var.bastion_data_size
   http_proxy_flavor             = var.http_proxy_flavor
-  app_flavor                    = var.app_flavor
-  log_flavor                    = var.log_flavor
+  http_proxy_count              = var.http_proxy_count
   no_proxy                      = var.no_proxy
   ssh_access_cidr               = var.ssh_access_cidr
   ssh_authorized_keys           = var.ssh_authorized_keys
@@ -35,13 +33,21 @@ module "app-pool" {
   docker_registry_username      = var.docker_registry_username
   docker_registry_token         = var.docker_registry_token
   metric_enable                 = var.metric_enable
+  app_count                     = var.app_count
+  app_flavor                    = var.app_flavor
   app_metric_variables          = var.app_metric_variables
-  lb_metric_variables           = var.lb_metric_variables
+  app_data_enable               = var.app_data_enable
+  app_data_size                 = var.app_data_size
   app_install_script            = var.app_install_script
   app_variables                 = var.app_variables
-  log_variables                 = var.log_variables
+  lb_metric_variables           = var.lb_metric_variables
   lb_count                      = var.lb_count
   lb_flavor                     = var.lb_flavor
   lb_install_script             = var.lb_install_script
   lb_variables                  = var.lb_variables
+  log_count                     = var.log_count
+  log_flavor                    = var.log_flavor
+  log_variables                 = var.log_variables
+  log_data_enable               = var.log_data_enable
+  log_data_size                 = var.log_data_size
 }

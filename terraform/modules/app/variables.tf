@@ -3,6 +3,7 @@ variable "fip" {}
 variable "network" {}
 variable "subnet" {}
 variable "source_volid" {}
+variable "worker_data_volume_id" {}
 
 variable "security_group" {}
 
@@ -90,6 +91,10 @@ variable "metric_variables" {
   default = {}
 }
 
+variable "app_data_enable" {
+  type = bool
+  default = false
+}
 variable "dockerhub_login" {}
 variable "dockerhub_token" {}
 variable "github_token" {}

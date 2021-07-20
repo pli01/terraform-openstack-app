@@ -92,7 +92,8 @@ show:| check-var-PROJECT init
 	${TF_BIN} -chdir=${PROJECT} show
 show-json:| check-var-PROJECT init
 	${TF_BIN} -chdir=${PROJECT} show  -json | \
-	   jq -re  '.values.root_module.child_modules[].child_modules[].resources[]|(.name + ": "+.address)' | sort
+	   jq -re  '.values' | sort
+#	   jq -re  '.values.root_module.child_modules[].child_modules[].resources[]|(.name + ": "+.address)' | sort
 
 taint:| check-var-PROJECT init
 	for val in $$(echo "${TAINT_ADDRESS}" |tr -d '[:space:]' | tr ',' '\n'); do \

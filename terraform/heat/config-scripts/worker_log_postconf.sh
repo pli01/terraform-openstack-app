@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "# RUNNING: $(dirname $0)/$(basename $0)"
+#set -x
 set -e -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/local.cfg ] && source ${libdir}/local.cfg
@@ -7,6 +8,7 @@ libdir=/home/debian
 [ -f ${libdir}/common_functions.sh ] && source ${libdir}/common_functions.sh
 [ -f ${libdir}/log.cfg ] && source ${libdir}/log.cfg
 
+cd /home/debian
 echo "# DATA elasticsearch"
 [ -d "/DATA/esdata" ] || mkdir -p /DATA/esdata
 chown -R debian.root /DATA/esdata
@@ -35,6 +37,7 @@ chmod 600 /DATA/.openrc.sh
 echo "## log configuration"
 cat <<'EOF' > /home/debian/deploy-logs.sh
 #!/bin/bash
+#set -x
 set -e -o pipefail
 libdir=/home/debian
 [ -f ${libdir}/local.cfg ] && source ${libdir}/local.cfg
@@ -74,8 +77,8 @@ eval curl -kL -s $curl_args ${LOG_INSTALL_SCRIPT} | \
  bash
 ) || exit $?
 EOF
+echo "# run /home/debian/deploy-logs.sh"
 chmod +x /home/debian/deploy-logs.sh
-su -p - debian -c "bash -c /home/debian/deploy-logs.sh"
-
+su - debian -c "bash -c /home/debian/deploy-logs.sh"
 
 echo "## End post installation"

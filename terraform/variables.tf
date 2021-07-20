@@ -81,6 +81,14 @@ variable "bastion_flavor" {
   type    = string
   default = "t1.small"
 }
+variable "bastion_data_enable" {
+  type = bool
+  default = false
+}
+variable "bastion_data_size" {
+  type = number
+  default = 0
+}
 
 # http-proxy out
 variable "http_proxy_count" {
@@ -163,7 +171,14 @@ variable "log_flavor" {
   type    = string
   default = "t1.small"
 }
-
+variable "log_data_enable" {
+  type = bool
+  default = false
+}
+variable "log_data_size" {
+  type = number
+  default = 0
+}
 variable "log_count" {
   type    = number
   default = 0
@@ -203,6 +218,15 @@ variable "app_flavor" {
   type    = string
   default = "t1.small"
 }
+variable "app_data_enable" {
+  type = bool
+  default = false
+}
+variable "app_data_size" {
+  type = number
+  default = 0
+}
+
 variable "app_install_script" {
   default = "https://raw.githubusercontent.com/pli01/terraform-openstack-app/main/samples/app/whoami/whoami-docker-deploy.sh"
 }
