@@ -8,6 +8,7 @@ libdir=/home/debian
 [ -f ${libdir}/lb.cfg ] && source ${libdir}/lb.cfg
 
 echo "## generate os_config"
+mkdir -p /DATA
 cat <<EOF > /DATA/.openrc.sh
 OS_AUTH_URL=$OS_AUTH_URL
 OS_REGION_NAME=$OS_REGION_NAME
@@ -60,8 +61,8 @@ eval curl -kL -s $curl_args ${LB_INSTALL_SCRIPT} | \
  bash
 ) || exit $?
 EOF
+echo "# run /home/debian/deploy-lb.sh"
 chmod +x /home/debian/deploy-lb.sh
 su - debian -c "bash -c /home/debian/deploy-lb.sh"
-
 
 echo "## End post installation"
